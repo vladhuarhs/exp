@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Problema de las Sandías</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 20px;
+    }
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    input, button {
+      margin: 10px 0;
+      padding: 10px;
+      width: 100%;
+      max-width: 300px;
+      font-size: 16px;
+    }
+    .result {
+      font-weight: bold;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>El Problema de las Sandías</h1>
+    <p>Ingresa el número total de sandías y la capacidad del camello:</p>
+    <label for="sandias">Número total de sandías:</label>
+    <input type="number" id="sandias" placeholder="Ejemplo: 100">
+    <br>
+    <label for="capacidad">Capacidad máxima del camello:</label>
+    <input type="number" id="capacidad" placeholder="Ejemplo: 30">
+    <br>
+    <button onclick="calcular()">Calcular</button>
+    <div class="result" id="resultado"></div>
+  </div>
+   
+
+  <script>
+    function calcular() {
+      let sandias = parseInt(document.getElementById("sandias").value);
+      const capacidad = parseInt(document.getElementById("capacidad").value);
+
+      if (isNaN(sandias) || isNaN(capacidad) || sandias <= 0 || capacidad <= 0) {
+        document.getElementById("resultado").innerText = "Por favor, ingresa valores válidos.";
+        return;
+      }
+
+      let etapa = 1;
+      let detalles = '';
+
+      // Mientras queden más sandías que la capacidad del camello
+      while (sandias > capacidad) {
+        sandias -= capacidad + 1; // Resta la capacidad transportada y el consumo del camello
+        detalles += `Etapa ${etapa}: Sandías restantes = ${sandias} (transporta ${capacidad}, consume 1)\n`;
+        etapa++;
+      }
+
+      // Última etapa: No hay consumo porque no regresa
+      detalles += `Etapa ${etapa}: Sandías restantes = ${sandias} (no hay consumo en esta etapa)\n`;
+
+      document.getElementById("resultado").innerText = `Resultado final: ${sandias} sandías llegan al mercado.\n\n${detalles}`;
+    }
+  </script>
+</body>
+</html>

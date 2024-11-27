@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>La Apuesta de las Piedras</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>La Apuesta de las Piedras</h1>
+    <p>El primer jugador elige un número de piedras (de 1 a 100), y el segundo jugador debe adivinarlo.</p>
+    
+    <label for="piedras">Elige un número de piedras (de 1 a 100):</label>
+    <input type="number" id="piedras" min="1" max="100" placeholder="Número de piedras">
+    <button onclick="iniciarJuego()">Iniciar Juego</button>
+    
+    <div id="pregunta" style="display: none;">
+      <p id="mensajePregunta"></p>
+      <button onclick="responder(true)">Sí</button>
+      <button onclick="responder(false)">No</button>
+    </div>
+    
+    <div id="resultado" style="display: none;">
+      <h2>¡He adivinado el número!</h2>
+      <p id="adivinanza"></p>
+      <button onclick="reiniciarJuego()">Jugar de nuevo</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
